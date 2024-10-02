@@ -4,14 +4,12 @@ import { check } from 'k6';
 
 // 2500 req at once(individual sessions)
 let case_1 = {
-    executor: 'constant-vus',
     vus: 2500, // 2000 Virtual Users (VUs) to run in parallel
     duration: '1s', // Duration for which the VUs will send requests (effectively all at once)
 };
 
 // 2500 req/sec for 10 sec
 let case_2 = {
-    executor: 'constant-vus',
     vus: 2500,
     duration: '10s',
 }
