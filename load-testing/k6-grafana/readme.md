@@ -57,7 +57,7 @@ let options = {
 ## setup:
 - fastapi server "/" with 200 ms timeout
 - using docker stack with multiple replicas and multiple workers
-- using k6 to trigger test --> influxdb --> grafana(for graphs)
+- using k6 to trigger test --> influxdb (to store metrics)--> grafana(for graphs)
 
 ## results:
 
