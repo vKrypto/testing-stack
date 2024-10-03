@@ -54,13 +54,16 @@ services:
         
   fastapi:
     image: python:3.12.7
+    labels:
+      - "traefik.http.routers.fastapi.rule=Host(`fastapi.local`)"
+      - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
     networks:
       - testing_network
     ports:
       - 8000:8000
     volumes:
       - ./fastapi:/app
-    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=5"
+    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=41"
     # healthcheck:
     #   test: ["CMD-SHELL", "curl -f http://fastapi:8000/ping"]
     #   interval: 30s
@@ -75,6 +78,38 @@ services:
         delay: 5s
       restart_policy:
         condition: on-failure
+      
+  # cadvisor:
+  #   image: google/cadvisor:latest
+  #   container_name: cadvisor
+  #   ports:
+  #     - "8081:8080"
+  #   networks:
+  #     - testing_network
+  #   devices:
+  #     - "/dev/kmsg:/dev/kmsg"  # To get kernel logs (optional)
+  #   privileged: true  # Run cAdvisor with privileged mode
+  #   volumes:
+  #     - "/:/rootfs:ro"  # Mount root filesystem to access all system data
+  #     - "/var/run:/var/run:ro"  # Mount /var/run to access Docker container information
+  #     - "/sys:/sys:ro"  # Mount /sys for system stats
+  #     - "/var/lib/docker:/var/lib/docker:ro"  # Mount Docker directory to access container stats
+  
+  # traefik:
+  #   image: traefik:v2.10
+  #   command:
+  #     - "--api.insecure=true"  # Enable the Traefik dashboard
+  #     - "--providers.docker=true"  # Enable Docker provider
+  #     - "--entryPoints.web.address=:800"  # Define web entry point
+  #     - "--entryPoints.websecure.address=:443"  # Define HTTPS entry point
+  #     # - "--metrics.prometheus=true"  # Enable Prometheus metrics
+  #     # - "--metrics.prometheus.entryPoint=web"  # Expose Prometheus metrics on the web entry point
+  #   ports:
+  #     - "800:800"        # HTTP port
+  #     - "8080:8080"    # Traefik dashboard
+  #     - "444:443"      # HTTPS port
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock"  # Allow Traefik to read Docker socket
 
   # k6:
   #   image: grafana/k6:latest
