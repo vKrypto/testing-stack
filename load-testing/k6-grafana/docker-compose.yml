@@ -61,7 +61,7 @@ services:
       - 8000:8000
     volumes:
       - ./fastapi:/app
-    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=41"
+    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=5"
     # healthcheck:
     #   test: ["CMD-SHELL", "curl -f http://fastapi:8000/ping"]
     #   interval: 30s
@@ -70,28 +70,34 @@ services:
     depends_on:
       - influxdb
     deploy:
-      replicas: 1
+      replicas: 8
       update_config:
         parallelism: 5
         delay: 5s
       restart_policy:
         condition: on-failure
       
-  # cadvisor:
-  #   image: google/cadvisor:latest
-  #   container_name: cadvisor
-  #   ports:
-  #     - "8081:8080"
-  #   networks:
-  #     - testing_network
-  #   devices:
-  #     - "/dev/kmsg:/dev/kmsg"  # To get kernel logs (optional)
-  #   privileged: true  # Run cAdvisor with privileged mode
-  #   volumes:
-  #     - "/:/rootfs:ro"  # Mount root filesystem to access all system data
-  #     - "/var/run:/var/run:ro"  # Mount /var/run to access Docker container information
-  #     - "/sys:/sys:ro"  # Mount /sys for system stats
-  #     - "/var/lib/docker:/var/lib/docker:ro"  # Mount Docker directory to access container stats
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - testing_network
+    # deprecated 
+    devices:
+      - "/dev/kmsg:/dev/kmsg"  # To get kernel logs (optional)
+    privileged: true  # deprecated 
+    environment:
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DB=k6
+    volumes:
+      - "/:/rootfs:ro"  # Mount root filesystem to access all system data
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"  # Ensure cgroups are accessi
+      - "/var/run:/var/run:ro"  # Mount /var/run in read-only mode
+      - "/sys:/sys:ro"  # Mount /sys for system stats
+      - "/var/lib/docker/:/var/lib/docker:ro"  # Mount Docker directory to access container stats
+      - "/dev/disk/:/dev/disk:ro"  # Access disk information in read-only mode
   
   # traefik:
   #   image: traefik:v2.10

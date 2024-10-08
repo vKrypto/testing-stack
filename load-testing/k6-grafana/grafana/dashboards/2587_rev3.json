@@ -1053,7 +1053,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {
@@ -1158,7 +1157,6 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_K6}",
           "description": "Grouped by 1 sec intervals",
           "fill": 1,
           "height": "250px",
@@ -1402,7 +1400,6 @@
             "mode": "spectrum"
           },
           "dataFormat": "timeseries",
-          "datasource": "${DS_K6}",
           "heatmap": {},
           "height": "250px",
           "highlightCards": true,

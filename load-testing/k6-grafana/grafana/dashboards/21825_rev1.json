@@ -1,5 +1,4 @@
 {
-  "__elements": [],
   "__requires": [
     {
       "type": "grafana",
@@ -5244,10 +5243,6 @@
         "type": "textbox"
       }
     ]
-  },
-  "time": {
-    "from": "2024-08-28T15:16:48.689Z",
-    "to": "2024-08-28T15:30:00.761Z"
   },
   "timepicker": {
     "refresh_intervals": [

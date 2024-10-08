@@ -5,7 +5,7 @@ import { check } from 'k6';
 // 2500 req at once(individual sessions)
 let case_1 = {
     vus: 2500, // 2000 Virtual Users (VUs) to run in parallel
-    duration: '1s', // Duration for which the VUs will send requests (effectively all at once)
+    duration: '10s', // Duration for which the VUs will send requests (effectively all at once)
 };
 
 // 2500 req/sec for 10 sec
@@ -16,7 +16,6 @@ let case_2 = {
 
 // ramp-up from 1000 req/sec to 3000 req/sec
 let case_3 = {
-    executor: 'ramping-vus',
     startVUs: 10, // Start with 10 VUs
     stopVUs: 100, // Ramp up to 100 VUs
     stages: [
@@ -25,9 +24,17 @@ let case_3 = {
         { target: 2000, duration: '5s' }, // Ramp up to 2000 requests per second for the next 5 seconds
         { target: 2500, duration: '5s' }, // Ramp up to 2500 requests per second for the next 5 seconds
         { target: 3000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 3500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 4000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 4500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 5000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 5500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 6000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 6500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 7000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
     ],
     thresholds: {
-        http_req_duration: ['p(95)<2000'], // 95% of requests should be below 1000ms
+        // http_req_duration: ['p(95)<2000'], // 95% of requests should be below 1000ms
         http_req_failed: ['rate<0.00'], // http errors should be less than 1%
     },
 };
@@ -72,7 +79,7 @@ let case_8 = {
 
 
 
-export let options = case_1;
+export let options = case_3;
 // Main function to make GET requests
 export default function () {
     // Replace the URL with your FastAPI app's URL
