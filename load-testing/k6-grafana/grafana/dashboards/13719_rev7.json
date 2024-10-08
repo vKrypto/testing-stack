@@ -1,18 +1,4 @@
 {
-  "datasource": {
-    "type": "influxdb",
-    "uid": "influxdb"
-  },
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB-K6",
-      "label": "influxdb-k6",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
   "__requires": [
     {
       "type": "grafana",
@@ -83,7 +69,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -215,7 +200,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -360,7 +344,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -520,7 +503,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -675,7 +657,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": null,
       "description": "Grouped by 1 sec intervals and group name",
       "fieldConfig": {
@@ -842,7 +823,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": null,
       "description": "Grouped by 1 sec intervals and group name",
       "fieldConfig": {
@@ -1009,7 +989,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-K6}",
       "description": "Grouped by 1 sec intervals",
       "fieldConfig": {
         "defaults": {
@@ -1342,7 +1321,6 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1441,7 +1419,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -1578,7 +1555,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -1715,7 +1691,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -1839,7 +1814,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -1976,7 +1950,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -2100,7 +2073,6 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_INFLUXDB-K6}",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -2219,7 +2191,6 @@
     },
     {
       "columns": [],
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2504,7 +2475,6 @@
     },
     {
       "columns": [],
-      "datasource": "${DS_INFLUXDB-K6}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2866,7 +2836,6 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "${DS_INFLUXDB-K6}",
         "definition": "",
         "error": null,
         "hide": 0,
@@ -2893,7 +2862,6 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "${DS_INFLUXDB-K6}",
         "definition": "",
         "error": null,
         "hide": 0,
@@ -2920,7 +2888,6 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "${DS_INFLUXDB-K6}",
         "definition": "",
         "error": null,
         "hide": 0,

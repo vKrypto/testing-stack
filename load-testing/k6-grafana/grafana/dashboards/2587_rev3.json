@@ -1,18 +1,4 @@
 {
-  "datasource": {
-    "type": "influxdb",
-    "uid": "influxdb"
-  },
-  "__inputs": [
-    {
-      "name": "DS_K6",
-      "label": "k6",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
   "__requires": [
     {
       "type": "grafana",
@@ -66,7 +52,6 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_K6}",
           "fill": 1,
           "id": 1,
           "interval": ">1s",
@@ -174,7 +159,6 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_K6}",
           "fill": 1,
           "id": 17,
           "interval": "1s",
@@ -283,7 +267,6 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_K6}",
           "fill": 1,
           "id": 7,
           "interval": "1s",
@@ -396,7 +379,6 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_K6}",
           "fill": 1,
           "id": 10,
           "interval": ">1s",
@@ -531,7 +513,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {
@@ -640,7 +621,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {
@@ -749,7 +729,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {
@@ -858,7 +837,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {
@@ -967,7 +945,6 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "${DS_K6}",
           "decimals": 2,
           "format": "ms",
           "gauge": {

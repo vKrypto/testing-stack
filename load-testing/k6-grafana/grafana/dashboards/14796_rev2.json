@@ -1,18 +1,4 @@
 {
-  "datasource": {
-    "type": "influxdb",
-    "uid": "influxdb"
-  },
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
   "__requires": [
     {
       "type": "grafana",
@@ -139,7 +125,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -267,7 +252,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
       "fill": 3,
       "fillGradient": 0,
       "gridPos": {
@@ -396,7 +380,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -530,7 +513,6 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -690,7 +672,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
       "description": "Grouped by 1 sec intervals",
       "fill": 6,
       "fillGradient": 0,
@@ -971,7 +952,6 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -1047,7 +1027,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1164,7 +1143,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1277,7 +1255,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1377,7 +1354,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1494,7 +1470,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1598,7 +1573,6 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1700,7 +1674,6 @@
     },
     {
       "columns": [],
-      "datasource": "${DS_INFLUXDB}",
       "fontSize": "100%",
       "gridPos": {
         "h": 23,
@@ -1980,7 +1953,6 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_INFLUXDB}",
         "definition": "SHOW DATABASES",
         "description": null,
         "error": null,
@@ -2069,7 +2041,6 @@
       {
         "allValue": "*",
         "current": {},
-        "datasource": "${DS_INFLUXDB}",
         "definition": "",
         "description": null,
         "error": null,

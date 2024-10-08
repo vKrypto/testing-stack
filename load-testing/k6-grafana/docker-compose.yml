@@ -35,16 +35,14 @@ services:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin     # Set your custom username
-      - GF_SECURITY_ADMIN_PASSWORD=admin # Set your custom password
-      # - GF_AUTH_ANONYMOUS_ORG_ROLE=admin
+      - GF_SECURITY_ADMIN_PASSWORD=1234 # Set your custom password
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=admin
       - GF_AUTH_ANONYMOUS_ENABLED=false
-      # - GF_DATASOURCE_NAME=InfluxDB
-      # - GF_DATASOURCE_DB=k6 
       - GF_AUTH_BASIC_ENABLED=false
       - GF_DATASOURCE_URL=http://influxdb:8086
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
-      # - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     depends_on:
       - influxdb
     deploy:
@@ -72,7 +70,7 @@ services:
     depends_on:
       - influxdb
     deploy:
-      replicas: 20
+      replicas: 1
       update_config:
         parallelism: 5
         delay: 5s
@@ -124,3 +122,4 @@ services:
   #     fastapi:
   #       condition: service_healthy
 
+ 

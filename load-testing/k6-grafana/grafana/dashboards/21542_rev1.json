@@ -1,19 +1,4 @@
 {
-  "datasource": {
-    "type": "influxdb",
-    "uid": "influxdb_k6"
-  },
-  "__inputs": [
-    {
-      "name": "DS_PROME_K6",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
   "__requires": [
     {
       "type": "grafana",
@@ -71,10 +56,6 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -185,10 +166,6 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "k6_data_received_total{testid=~\"$testid\"}",
           "instant": false,
@@ -197,10 +174,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "k6_data_sent_total{testid=~\"$testid\"}",
           "hide": false,
@@ -214,10 +187,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -328,10 +297,6 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "irate(k6_data_received_total{testid=~\"$testid\"}[$__rate_interval])",
           "instant": false,
@@ -340,10 +305,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "irate(k6_data_sent_total{testid=~\"$testid\"}[$__rate_interval])",
           "hide": false,
@@ -357,10 +318,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -407,10 +364,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "max(sum(k6_http_reqs_total{testid=~\"$testid\"}))",
           "instant": false,
@@ -424,10 +377,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -474,10 +423,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "max(sum(k6_http_reqs_total{testid=~\"$testid\",expected_response=~\"true\"}))",
           "instant": false,
@@ -491,10 +436,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -541,10 +482,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "max(sum(k6_http_reqs_total{testid=~\"$testid\",expected_response=~\"false\"}))",
           "instant": false,
@@ -558,10 +495,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -607,10 +540,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum(irate(k6_http_reqs_total{testid=~\"$testid\"}[$__rate_interval]))",
           "instant": false,
@@ -624,10 +553,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -673,10 +598,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum(irate(k6_http_reqs_total{testid=~\"$testid\"}[$__rate_interval]))",
           "instant": false,
@@ -690,10 +611,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -739,10 +656,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum(irate(k6_http_reqs_total{testid=~\"$testid\"}[$__rate_interval]))",
           "instant": false,
@@ -756,10 +669,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -914,10 +823,6 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "k6_vus{testid=~\"$testid\"}",
           "instant": false,
@@ -926,10 +831,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum(irate(k6_http_reqs_total{testid=~\"$testid\"}[$__rate_interval]))",
           "hide": false,
@@ -939,10 +840,6 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum(irate(k6_http_reqs_total{testid=~\"$testid\",expected_response=~\"false\"}[$__rate_interval]))",
           "hide": false,
@@ -956,10 +853,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1100,10 +993,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "histogram_quantile(0, sum by(le, name, method, status) (rate(k6_http_req_duration_seconds{testid=~\"$testid\",expected_response=~\"true\"}[$__rate_interval])))",
           "format": "table",
@@ -1114,10 +1003,6 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "histogram_quantile(1, sum by(le, name, method, status) (rate(k6_http_req_duration_seconds{testid=~\"$testid\",expected_response=~\"true\"}[$__rate_interval])))",
           "format": "table",
@@ -1128,10 +1013,6 @@
           "refId": "C"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "histogram_quantile(0.95, sum by(le, name, method, status) (rate(k6_http_req_duration_seconds{testid=~\"$testid\",expected_response=~\"true\"}[$__rate_interval])))",
           "format": "table",
@@ -1142,10 +1023,6 @@
           "refId": "D"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "histogram_quantile(0.99, sum by(le, name, method, status) (rate(k6_http_req_duration_seconds{testid=~\"$testid\",expected_response=~\"true\"}[$__rate_interval])))",
           "format": "table",
@@ -1237,10 +1114,6 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROME_K6}"
-      },
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -1324,10 +1197,6 @@
       "pluginVersion": "10.2.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum by (url) (k6_http_reqs_total{testid=~\"$testid\",status=~\"0\"})",
@@ -1338,10 +1207,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum by (url) (k6_http_reqs_total{testid=~\"$testid\",status=~\"5.+\"})",
           "format": "table",
@@ -1352,10 +1217,6 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROME_K6}"
-          },
           "editorMode": "code",
           "expr": "sum by (url) (k6_http_reqs_total{testid=~\"$testid\",status=~\"4.+\"})",
           "format": "table",
@@ -1431,10 +1292,6 @@
     "list": [
       {
         "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROME_K6}"
-        },
         "definition": "label_values(testid)",
         "hide": 0,
         "includeAll": true,
