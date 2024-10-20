@@ -20,10 +20,10 @@ let case_3 = {
     stopVUs: 100, // Ramp up to 100 VUs
     stages: [
         { target: 1000, duration: '5s' }, // Ramp up to 1000 requests per second over 5 seconds
-        { target: 1500, duration: '5s' }, // Ramp up to 1500 requests per second over the next 5 seconds
-        { target: 2000, duration: '5s' }, // Ramp up to 2000 requests per second for the next 5 seconds
-        { target: 2500, duration: '5s' }, // Ramp up to 2500 requests per second for the next 5 seconds
-        { target: 3000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
+        { target: 1500, duration: '10s' }, // Ramp up to 1500 requests per second over the next 5 seconds
+        { target: 2000, duration: '15s' }, // Ramp up to 2000 requests per second for the next 5 seconds
+        { target: 2500, duration: '20s' }, // Ramp up to 2500 requests per second for the next 5 seconds
+        { target: 3000, duration: '25s' }, // Ramp up to 3000 requests per second for the next 5 seconds
         { target: 3500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
         { target: 4000, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
         { target: 4500, duration: '5s' }, // Ramp up to 3000 requests per second for the next 5 seconds
@@ -35,7 +35,7 @@ let case_3 = {
     ],
     thresholds: {
         // http_req_duration: ['p(95)<2000'], // 95% of requests should be below 1000ms
-        http_req_failed: ['rate<0.00'], // http errors should be less than 1%
+        http_req_failed: ['rate<0.01'], // http errors should be less than 1%
     },
 };
 

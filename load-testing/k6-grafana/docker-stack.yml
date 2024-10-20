@@ -11,10 +11,11 @@ services:
     image: influxdb:1.8
     networks:
       - testing_network
-    # ports:
-    #   - "8086:8086"
+    ports:
+      - "8086:8086"
     environment:
       - INFLUXDB_DB=k6
+      - K6_INFLUXDB_PAYLOAD_SIZE=1MB 
     volumes:
       - influxdb_data:/var/lib/influxdb
     healthcheck:
@@ -28,8 +29,8 @@ services:
         condition: any
       resources:
         limits:
-          cpus: "0.5"
-          memory: 512M
+          cpus: "2"
+          memory: 1G
 
   grafana:
     image: grafana/grafana:latest
@@ -62,21 +63,18 @@ services:
     image: python:3.12.6-alpine
     networks:
       - testing_network
-    # ports:
-    #   - "8000:8000"
+    ports:
+      - "8000:8000"
     volumes:
       - ./fastapi:/app
-    environment:
-      - http_proxy="http://Srv_ITProxyProd:3rv1tPr0xy@ProdINproxy.navbackoffice.com:3129"
-      - https_proxy="http://Srv_ITProxyProd:3rv1tPr0xy@ProdINproxy.navbackoffice.com:3129"
-    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=1"
+    command: sh -c "cd /app && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers=8"
     # healthcheck:
     #   test: ["CMD-SHELL", "curl -f http://localhost:8000/ping || exit 1"]
     #   interval: 30s
     #   timeout: 10s
     #   retries: 5
     deploy:
-      replicas: 1
+      replicas: 8
       update_config:
         parallelism: 5
         delay: 5s
@@ -84,8 +82,8 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.25"
-          memory: 256M
+          cpus: "2"
+          memory: 3G
 
   k6:
     image: grafana/k6:latest
@@ -110,6 +108,6 @@ services:
         max_attempts: 20
       resources:
         limits:
-          cpus: "0.5"
-          memory: 512M
+          cpus: "2"
+          memory: 1G
 

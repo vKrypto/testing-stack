@@ -3,15 +3,31 @@ import { check } from 'k6';
 
 // Define options for each scenario
 export let options = {
+    discardresponsebodies: true,
+    scenarios: {
+      contacts: {
+        executor: 'ramping-vus',
+        startvus: 0,
+        stages: [
+          { duration: '5s', target: 5000 },
+          { duration: '5s', target: 0 },
+        ],
+        gracefulRampDown: '1s',
+      },
+    },
+  };
+  
+  
+  let options2 = {
     stages: [
         // Ramp-up from 1 to 5 VUs in 10s
-        { duration: "10s", target: 50000 },
+        { duration: "10s", target: 5000 },
 
         // Stay at rest on 5 VUs for 5s
-        { duration: "5s", target: 100000 },
+        { duration: "100s", target: 40000 },
 
         // Ramp-down from 5 to 0 VUs for 5s
-        { duration: "5s", target: 0 }
+        { duration: "15s", target: 0 }
     ]
 }
 export let options1 ={
