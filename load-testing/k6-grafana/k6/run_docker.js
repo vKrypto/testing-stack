@@ -7,10 +7,10 @@ export let options = {
     scenarios: {
       contacts: {
         executor: 'ramping-vus',
-        startvus: 0,
+        startvus: 500,
         stages: [
-          { duration: '5s', target: 5000 },
-          { duration: '5s', target: 0 },
+          { duration: '5s', target: 100 },
+          { duration: '5s', target: 200 },
         ],
         gracefulRampDown: '1s',
       },
