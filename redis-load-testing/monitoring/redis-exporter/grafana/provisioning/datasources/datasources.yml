@@ -8,3 +8,14 @@ datasources:
     isDefault: true  # Set Prometheus as the default data source
     version: 1
     editable: true
+    id: prometheus  # Unique ID for Prometheus
+
+  - name: Redis
+    type: redis-datasource
+    access: proxy
+    url: redis://redis:6379
+    jsonData:
+      tlsSkipVerify: false
+      tlsAuth: false
+    # secureJsonData:
+    #   password: your_redis_password
