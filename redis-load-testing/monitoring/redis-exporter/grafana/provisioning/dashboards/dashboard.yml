@@ -17,3 +17,13 @@ providers:
     updateIntervalSeconds: 10
     options:
       path: /var/lib/grafana/dashboards/redis_exporter
+
+  - name: 'prometheus'
+    orgId: 1
+    folder: 'prometheus'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards/prometheus
+      
