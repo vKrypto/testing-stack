@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    # ports:
+    #   - "6379:6379"
+    deploy:
+      replicas: 1
+    volumes:
+      - redis-data:/data
+    networks:
+      - monitoring
+
+  redis_exporter:
+    image: oliver006/redis_exporter:latest
+    environment:
+      - REDIS_ADDR=redis:6379  # Redis address within the Docker network
+    # ports:
+    #   - "9121:9121"
+    networks:
+      - monitoring
+    depends_on:
+      - redis
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-remote-write-receiver"
+    volumes:
+      - prometheus-data:/prometheus
+      - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus config
+    networks:
+      - monitoring
+    depends_on:
+      - redis_exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    networks:
+      - monitoring
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin     # Set your custom username
+      - GF_SECURITY_ADMIN_PASSWORD=1234 # Set your custom password
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_DATASOURCE_URL=http://prometheus:9090
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+    
+  k6:
+    image: grafana/k6:latest
+    networks:
+      - monitoring
+    # ports:
+    #   - "5665:5665"
+    environment:
+      # - K6_OUT=http://pushgateway:9091 
+      # - K6_PROMETHEUS_RW_PUSH_INTERVAL=5s
+      - K6_PROMETHEUS_RW_TREND_STATS=p(95),p(99),min,max 
+      - K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM=true
+      - K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write
+      # - K6_WEB_DASHBOARD=true
+    volumes:
+      - ./k6:/scripts
+    command: run -o experimental-prometheus-rw /scripts/run_docker.js
+    depends_on:
+      - pushgateway
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 15s
+        # max_attempts: 20
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+
+networks:
+  monitoring:
+    driver: overlay
+
+volumes:
+  redis-data:
+  prometheus-data:
