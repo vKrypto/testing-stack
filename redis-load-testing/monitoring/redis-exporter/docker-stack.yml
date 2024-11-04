@@ -1,6 +1,25 @@
 version: '3.8'
 
 services:
+  influxdb:
+    image: influxdb:1.8
+    networks:
+      - monitoring
+    # ports:
+    #   - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+    volumes:
+      - influxdb_data:/var/lib/influxdb  
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8086/ping || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    deploy:
+      replicas: 0
+      restart_policy:
+        condition: on-failure
   redis:
     image: redis:latest
     # ports:
@@ -62,10 +81,10 @@ services:
     image: grafana/k6:latest
     networks:
       - monitoring
-    # ports:
-    #   - "5665:5665"
+    ports:
+      - "5665:5665"
     environment:
-      # - K6_OUT=http://pushgateway:9091 
+      # - K6_OUT=influxdb=http://influxdb:8086/k6
       - K6_PROMETHEUS_RW_PUSH_INTERVAL=5s
       - K6_PROMETHEUS_RW_TREND_STATS=p(95),p(99),min,max 
       # - K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM=true
@@ -74,6 +93,7 @@ services:
     volumes:
       - ./k6:/scripts
     command: run -o experimental-prometheus-rw /scripts/run_docker.js
+    # command: run /scripts/run_docker.js
     depends_on:
       - pushgateway
     deploy:
@@ -94,3 +114,4 @@ networks:
 volumes:
   redis-data:
   prometheus-data:
+  influxdb_data:

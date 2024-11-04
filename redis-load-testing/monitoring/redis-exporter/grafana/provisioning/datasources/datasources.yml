@@ -19,3 +19,11 @@ datasources:
       tlsAuth: false
     # secureJsonData:
     #   password: your_redis_password
+
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      httpMode: GET
+      dbname: k6

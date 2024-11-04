@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    # ports:
+    #   - "6379:6379"
+    deploy:
+      replicas: 1
+    volumes:
+      - redis-data:/data
+    networks:
+      - monitoring
+    
+  k6:
+    image: grafana/k6:latest
+    networks:
+      - monitoring
+    ports:
+      - "5665:5665"
+    environment:
+      - K6_WEB_DASHBOARD=true
+    volumes:
+      - ./k6:/scripts
+    command: run /scripts/run_docker.js
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 15s
+        # max_attempts: 20
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+
+networks:
+  monitoring:
+    driver: overlay
+
+volumes:
+  redis-data:
