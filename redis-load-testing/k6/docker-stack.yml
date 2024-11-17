@@ -21,7 +21,7 @@ services:
     environment:
       - K6_WEB_DASHBOARD=true
     volumes:
-      - ./k6:/scripts
+      - .:/scripts
     command: run /scripts/run_docker.js
     deploy:
       replicas: 1
